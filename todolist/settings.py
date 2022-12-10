@@ -1,5 +1,5 @@
-
 from pathlib import Path
+
 from envparse import env
 
 
@@ -12,9 +12,7 @@ SECRET_KEY = env.str('SECRET_KEY')
 
 DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=['*'])
-
-
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 
 # Application definition
 
@@ -59,7 +57,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'todolist.wsgi.application'
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -68,9 +65,8 @@ DATABASES = {
         'PASSWORD': env.str('POSTGRES_PASSWORD'),
         'HOST': env.str('POSTGRES_HOST', default='127.0.0.1'),
         'PORT': env.str('POSTGRES_PORT', default=5432),
-           }
+    }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -99,7 +95,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
