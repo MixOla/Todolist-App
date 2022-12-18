@@ -2,7 +2,7 @@ name: Build and deploy workflow
 on: [push]
 jobs:
   build_and_push:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: clone code
         uses: actions/checkout@v2
@@ -13,7 +13,7 @@ jobs:
       - name: docker push
         run: docker push mixola/todolist_app:$GITHUB_REF_NAME-$GITHUB_RUN_ID
   deploy:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     needs: build_and_push
     env:
       DEBUG: ${{ secrets.DEBUG }}
