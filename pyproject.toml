@@ -10,6 +10,7 @@ python = "^3.9"
 django = "^4.1.4"
 envparse = "^0.2.0"
 psycopg2-binary = "^2.9.5"
+djangorestframework = "^3.14.0"
 
 
 [build-system]
