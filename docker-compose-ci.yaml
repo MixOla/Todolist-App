@@ -41,8 +41,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    command: sh -c "python app/todolist/manage.py makemigrations &&
-        python app/todolist/manage.py migrate"
+    command: sh -c "python todolist/manage.py makemigrations &&
+        python todolist/manage.py migrate"
 
   db:
     image: postgres:14.6-alpine
