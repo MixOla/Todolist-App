@@ -23,7 +23,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
         password_repeat = validated_data.pop('password_repeat')
 
         if password != password_repeat:
-            raise serializers.ValidationError('Passwords do not match')
+            raise serializers.ValidationError('Passwords do not match.')
 
         try:
             password_validation.validate_password(password)
