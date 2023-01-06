@@ -4,28 +4,34 @@ from django.contrib.auth import (
     logout
 )
 from rest_framework import (
-    generics,
     permissions,
     status
+)
+from rest_framework.generics import (
+    CreateAPIView,
+    GenericAPIView,
+    RetrieveUpdateDestroyAPIView,
+    UpdateAPIView
 )
 from rest_framework.response import Response
 
 from core.serializers import (
     LoginSerializer,
     ProfileSerializer,
-    RegistrationSerializer
+    RegistrationSerializer,
+    UpdatePasswordSerializer
 )
 
 
 USER_MODEL = get_user_model()
 
 
-class RegistrationView(generics.CreateAPIView):
+class RegistrationView(CreateAPIView):
     model = USER_MODEL
     serializer_class = RegistrationSerializer
 
 
-class LoginView(generics.GenericAPIView):
+class LoginView(GenericAPIView):
     serializer_class = LoginSerializer
 
     def post(self, request, *args, **kwargs):
@@ -36,7 +42,7 @@ class LoginView(generics.GenericAPIView):
         return Response(serializer.data)
 
 
-class ProfileView(generics.RetrieveUpdateDestroyAPIView):
+class ProfileView(RetrieveUpdateDestroyAPIView):
     serializer_class = ProfileSerializer
     queryset = USER_MODEL.objects.all()
     permission_classes = [permissions.IsAuthenticated]
@@ -47,3 +53,11 @@ class ProfileView(generics.RetrieveUpdateDestroyAPIView):
     def delete(self, request, *args, **kwargs):
         logout(request)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class UpdatePasswordView(UpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = UpdatePasswordSerializer
+
+    def get_object(self):
+        return self.request.user
