@@ -25,4 +25,5 @@ urlpatterns = [
     path('api/core/', include('core.urls')),
     path('core/', include('core.urls')),
     path('oauth/', include('social_django.urls', namespace='social')),
+    path('api/oauth/', include('social_django.urls', namespace='social')),
 ]
