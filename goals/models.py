@@ -36,7 +36,7 @@ class Goal(models.Model):
     description = models.TextField(verbose_name='Описание')
     user = models.ForeignKey('core.User', verbose_name='Автор', on_delete=models.PROTECT)
     due_date = models.DateField(verbose_name='Дата выполнения')
-    category = models.ForeignKey(GoalCategory, verbose_name='Категор', related_name='goals', on_delete=models.CASCADE())
+    category = models.ForeignKey(GoalCategory, verbose_name='Категор', related_name='goals', on_delete=models.CASCADE)
     created = models.DateTimeField(verbose_name='Дата создания')
     updated = models.DateTimeField(verbose_name='Дата последнего обновления')
     created_at = models.DateTimeField(auto_now_add=True)
