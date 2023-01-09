@@ -32,6 +32,7 @@ class Goal(models.Model):
     class Meta:
         verbose_name = 'Цель'
         verbose_name_plural = 'Цели'
+
     title = models.CharField(verbose_name='Название', max_length=255)
     description = models.TextField(verbose_name='Описание')
     user = models.ForeignKey('core.User', verbose_name='Автор', on_delete=models.PROTECT)
