@@ -3,7 +3,7 @@ version: '3.8'
 services:
 
   frontend:
-    image: sermalenk/skypro-front:lesson-34
+    image: sermalenk/skypro-front:lesson-35
     restart: always
     depends_on:
       - api
@@ -25,6 +25,8 @@ services:
         condition: service_completed_successfully
     ports:
       - '8000:8000'
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
 
   migrations:
     build: .
@@ -34,8 +36,10 @@ services:
         condition: service_healthy
     env_file:
       - .env
-    command: sh -c "python todolist/manage.py makemigrations &&
-        python todolist/manage.py migrate"
+    command: sh -c "python manage.py makemigrations &&
+        python manage.py migrate"
+
+
 
   db:
     image: postgres:14.6-alpine
